@@ -1,0 +1,24 @@
+name: local_kwiff_all
+root: ~/kwiff/KWIFF_REPOS/core
+
+windows:
+ - RunComp:
+     layout: main-vertical
+     panes:
+       - nodemon core-front/index.js core-front/.env | bunyan -l debug
+       - nodemon core-offering/index.js core-offering/.env | bunyan -l debug
+       - nodemon core-ticket/index.js core-ticket/.env | bunyan -l debug
+       - nodemon core-user/index.js core-user/.env | bunyan -l debug
+       - nodemon core-wallet/index.js core-wallet/.env | bunyan -l debug
+       - nodemon core-notification/index.js core-notification/.env | bunyan -l debug
+       - nodemon core-oddsbalancer/index.js core-oddsbalancer/.env | bunyan -l debug
+ - NewComp:
+     layout: main-vertical
+     panes:
+       - nodemon core-activity/index.js core-activity/.env | bunyan -l debug
+       - nodemon core-evolution/index.js core-evolution/.env | bunyan -l debug
+       - nodemon kwiff-sportradar/index.js kwiff-sportradar/.env | bunyan -l debug
+ - ToolsConfigs:
+     panes:
+       - redis-cli shutdown;redis-server
+       - echo "make setupdb"

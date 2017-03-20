@@ -1,0 +1,13 @@
+name: 2xinspector
+root: ~/kwiff/KWIFF_REPOS/core
+windows:
+ - kwiff:
+     layout: main-horizontal
+     panes:
+       - cd ~/kwiff/KWIFF_REPOS/debug-console   && npm start
+       - cd ~/kwiff/KWIFF_REPOS/core/core-inspector  && toilet -f future inspector1 && DEBUG='core-inspector:*' nodemon .
+       - cd ~/kwiff/KWIFF_REPOS/core/core-inspector && toilet -f future inspector2 && DEBUG='core-inspector:*' SERVICE_ID=inspector2 REQREP_LISTEN_PORT=9093 SLACK_TOKEN=xoxb-51915276854-RDOoXuBW9DiwW2PeSSaiHt5x nodemon .
+
+ - tmuxinator:
+    panes:
+      - cd ~/.tmuxinator
