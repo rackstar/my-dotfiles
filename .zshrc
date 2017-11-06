@@ -1,13 +1,13 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/rmurdoch/.oh-my-zsh
+#export ZSH=/Users/rmurdoch/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+#ZSH_THEME="agnoster"
 
-DEFAULT_USER="rmurdoch"
+#DEFAULT_USER="rmurdoch"
 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -63,7 +63,7 @@ DEFAULT_USER="rmurdoch"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew npm tmux tmuxinator osx)
+#plugins=(git brew npm tmux tmuxinator osx)
 
 
 # User configuration
@@ -73,7 +73,7 @@ export PATH=$PATH/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 
-source $ZSH/oh-my-zsh.sh
+#source $ZSH/oh-my-zsh.sh
 
 # set to support 256 color schemes
 export TERM="xterm-256color"
@@ -136,6 +136,7 @@ alias .....="cd ../../../.."
 # Github
 alias gs='git status'
 alias ga='git add'
+alias gac='git add -p'
 alias gau='git add --update'
 alias gb='git branch'
 alias gba='git branch -a'
@@ -146,7 +147,7 @@ alias gd='git diff'
 alias gdc='git diff --cached'
 alias gcl='git clone'
 alias gra='git remote add'
-alias gpo='git push origin'
+alias gpo='gudr && git push origin'
 alias gudr='git pull origin develop --rebase'
 alias guom='git pull origin master --rebase'
 alias gu='git pull'
@@ -158,7 +159,7 @@ alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gcot='git checkout -t'
 alias gotb='git checkout --track -b'
-alias gl='git log'
+#alias gl='git log'
 alias glo='git log --pretty=oneline'
 alias glos='git log --pretty=format:"%h %s %cn"'
 alias glg='git log --graph --decorate --oneline'
@@ -168,8 +169,10 @@ alias guru='git pull --rebase upstream master'
 alias gsh='git stash'
 alias gsa='git stash apply'
 alias gbranch='git for-each-ref --sort=-committerdate refs/heads/'
+alias grc='git rebase --continue'
+alias grk='git rebase --skip'
 
-alias f="ag -g"
+alias f="fzf"
 
 
 # MySQL
@@ -246,6 +249,18 @@ alias prerslv='ssh corereso@webdr01.kwiff.com -p 49022'
 alias preactv='ssh coreacti@webdr01.kwiff.com -p 49022'
 alias preinsp='ssh coreinsp@webdr01.kwiff.com -p 49022'
 
+# Docker
+# container
+alias dcn='docker container'
+alias dcr='dcn run'
+alias dcp='dcn stop'
+alias dcs='dcn start'
+alias dcc='dcn create'
+alias dcl='dcn ls'
+
+# image
+alias di='docker image'
+
 
 # Vim
 alias v='nvim'
@@ -258,7 +273,8 @@ alias tnew='tmux new -s'
 alias tls='tmux ls'
 alias tkill='tmux kill-session -t'
 alias mux='tmuxinator'
-alias tkwiff='cd ~/.tmuxinator && tmuxinator local_kwiff_all.yml'
+alias tkwiff='mux local_kwiff_all'
+alias 2insp= 'mux 2xinspector'
 
 # convenience aliases for editing configs
 alias ev='vim ~/.config/nvim/init.vim'
@@ -305,13 +321,67 @@ toat () {
   atom "$1"
 }
 
+# Check if zplug is installed
+if [[ ! -d ~/.zplug ]]; then
+  git clone https://github.com/zplug/zplug ~/.zplug
+  source ~/.zplug/init.zsh && zplug update --self
+fi
 
+# Essential
+source ~/.zplug/init.zsh
 
+# enhancd #
+export ENHANCD_COMMAND=dc
 
+#zsh plugins
+source ~/.zplug/init.zsh
+#zplug "clvv/fasd"
+#zplug "b4b4r07/enhancd", of:enhancd.sh
+zplug "rimraf/k"
+zplug "djui/alias-tips"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-history-substring-search"
+#zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to: "fzf", use:"*darwin*amd64*"
+zplug "BurntSushi/ripgrep", from:gh-r, as:command, rename-to:"rg"
+#zplug "plugins/git", from:oh-my-zsh
+#zplug "felixr/docker-zsh-completion"
 
+# Install packages that have not been installed yet
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    else
+        echo
+    fi
+fi
 
-source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/local/etc/profile.d/z.sh
+zplug load --verbose
+
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+vim-fzf() vim $(fzf)
+zle -N vim-fzf
+bindkey '^v' vim-fzf
+# Auto-completion
+# ---------------
+[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
+
+# Key bindings
+# ------------
+source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,*.swp}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS='--bind J:down,K:up --reverse --ansi --extended'
+
+fzf_log() {
+  hash=$(git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |  fzf | awk '{print $1}')
+  echo $hash | xclip
+  git showtool $hash
+}
+
+#SOURCE
+source $HOME/.slimzsh/slim.zsh
+
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 #[[ ­s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # RVM
@@ -329,3 +399,19 @@ fi
 if [ -f /Users/rmurdoch/Downloads/google-cloud-sdk/completion.zsh.inc ]; then
   source '/Users/rmurdoch/Downloads/google-cloud-sdk/completion.zsh.inc'
 fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export PATH="/usr/local/sbin:$PATH"
