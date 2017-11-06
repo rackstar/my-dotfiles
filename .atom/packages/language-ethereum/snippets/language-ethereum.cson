@@ -1,0 +1,83 @@
+'.source.serpent':
+  '#!serpent':
+    'prefix': 'env'
+    'body': '#!serpent\n'
+  '# coding=utf-8':
+    'prefix': 'enc'
+    'body': '# coding=utf-8\n'
+  'data':
+    'prefix': 'data'
+    'body': 'data ${1:name}[](fields)$0'
+  'extern':
+    'prefix': 'extern'
+    'body': 'extern ${1:name}: [${2:method}:[${3:int256,int256[],bytes}]:${4:int256}]$0'
+  'event':
+    'prefix': 'event'
+    'body': 'event ${1:name}(${2:key}:indexed, values)$0'
+  'macro':
+    'prefix': 'macro'
+    'body': 'macro ${1:function}($${2:variables}):\n\t$0'
+  'def':
+    'prefix': 'def'
+    'body': 'def ${1:method}(${2:arg}):\n\treturn(${3:value})'
+  'if':
+    'prefix': 'if'
+    'body': 'if ${1:condition}:\n\t${2:stop}$0'
+  'if elif':
+    'prefix': 'ifelif'
+    'body': 'if ${1:condition}:\n\t${2:pass}\nelif ${3:condition}:\n\t${4:stop}$0'
+  'if else':
+    'prefix': 'ifelse'
+    'body': 'if ${1:condition}:\n\t${2:pass}\nelse:\n\t${4:stop}$0'
+  'else':
+    'prefix': 'else'
+    'body': 'else:\n\t${4:stop}$0'
+  'if return':
+    'prefix': 'ifreturn'
+    'body': 'if ${1:condition}:\n\t${2:pass}\nelse:\n\treturn(${4:value})$0'
+  'while':
+    'prefix': 'while'
+    'body': 'while ${1:condition}:\n\t${2:stop}'
+  'with':
+    'prefix': 'with'
+    'body': 'with ${1:variable} = ${2:value}:\n\t$0'
+  'with array':
+    'prefix': 'with array'
+    'body': '${1:ret} = array(${2:size})\nwith ${3:var} = ${4:value}:\n\t${1:ret}[0] = ${3:var}$0'
+  'return':
+    'prefix': 'ret'
+    'body': 'return(${1:value})$0'
+  'return array':
+    'prefix': 'return'
+    'body': 'return([${1:array}], items=${2:count})$0'
+  'array':
+    'prefix': 'array'
+    'body': 'array(${1:size})$0'
+  'log event':
+    'prefix': 'log'
+    'body': 'log(type=${1:event}, ${2:key}, ${3:values})$0'
+  'send':
+    'prefix': 'send'
+    'body': 'send(${1:msg.sender}, ${2:msg.value})$0'
+  'self':
+    'prefix': 'self'
+    'body': 'self.'
+  'self data':
+    'prefix': 'self.'
+    'body': 'self.${1:data}[${2:key}].${3:field}$0'
+  'self set data':
+    'prefix': 'self.'
+    'body': 'self.${1:data}[${2:key}].${3:field} = ${4:value}$0'
+  'call method':
+    'prefix': '.call'
+    'body': '.${1:method}(${2:params})'
+  'ecrecover':
+    'prefix': 'ecrecover'
+    'body': 'ecrecover(${1:h}, ${2:v}, ${3:r}, ${4:s})$0'
+  'suicide':
+    'prefix': 'suicide'
+    'body': 'def suicide():\n\tsuicide(${1:0})$0'
+'.source.serpent:not(.string)':
+  'self':
+    'prefix': '.'
+    'body': 'self.'

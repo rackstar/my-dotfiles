@@ -1,0 +1,60 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/private/var/folders/1r/9935zh8x05vfbcr26l40f4sm00010j/T/d-117922-21665-10m4lnz/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/private/var/folders/1r/9935zh8x05vfbcr26l40f4sm00010j/T/d-117922-21665-10m4lnz/package.tgz",
+        "spec": "/private/var/folders/1r/9935zh8x05vfbcr26l40f4sm00010j/T/d-117922-21665-10m4lnz/package.tgz",
+        "type": "local"
+      },
+      "/private/var/folders/1r/9935zh8x05vfbcr26l40f4sm00010j/T/apm-install-dir-117922-21665-dpvegg"
+    ]
+  ],
+  "_from": "../d-117922-21665-10m4lnz/package.tgz",
+  "_id": "language-ethereum@0.3.9",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/language-ethereum",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/private/var/folders/1r/9935zh8x05vfbcr26l40f4sm00010j/T/d-117922-21665-10m4lnz/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/private/var/folders/1r/9935zh8x05vfbcr26l40f4sm00010j/T/d-117922-21665-10m4lnz/package.tgz",
+    "spec": "/private/var/folders/1r/9935zh8x05vfbcr26l40f4sm00010j/T/d-117922-21665-10m4lnz/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-117922-21665-10m4lnz/package.tgz",
+  "_shasum": "11997b483d45d4a268f1569e631923fe736976a3",
+  "_shrinkwrap": null,
+  "_spec": "/private/var/folders/1r/9935zh8x05vfbcr26l40f4sm00010j/T/d-117922-21665-10m4lnz/package.tgz",
+  "_where": "/private/var/folders/1r/9935zh8x05vfbcr26l40f4sm00010j/T/apm-install-dir-117922-21665-dpvegg",
+  "bugs": {
+    "url": "https://github.com/caktux/language-ethereum/issues"
+  },
+  "dependencies": {},
+  "description": "Ethereum language support in Atom",
+  "devDependencies": {},
+  "engines": {
+    "atom": "*",
+    "node": "*"
+  },
+  "homepage": "https://github.com/caktux/language-ethereum",
+  "license": "MIT",
+  "name": "language-ethereum",
+  "optionalDependencies": {},
+  "readme": "# Ethereum language support in Atom [![Build Status](https://travis-ci.org/caktux/language-ethereum.svg?branch=master)](https://travis-ci.org/caktux/language-ethereum)\n\nAdds syntax highlighting and snippets to Solidity and Serpent files in Atom.\n\nSolidity support [converted](https://discuss.atom.io/t/convert-sublime-grammar-to-atom-grammar/14843)\nfrom the [Ethereum Sublime package](https://packagecontrol.io/packages/Ethereum).\n\n![screenshot](https://cloud.githubusercontent.com/assets/13692/8579705/30028ef4-2584-11e5-85b5-1119c8d4e9c4.png)\n\nContributions are greatly appreciated. Please fork this repository and open a\npull request to add snippets, make grammar tweaks, etc.\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caktux/language-ethereum.git"
+  },
+  "version": "0.3.9"
+}

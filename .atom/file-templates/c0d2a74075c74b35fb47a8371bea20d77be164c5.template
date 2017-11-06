@@ -1,0 +1,15 @@
+/*kwiff-policy*/
+
+'use-strict'
+
+/**
+ * @param {Object} data
+ * @param {} data.
+ */
+const  =  => {
+  
+}
+
+module.exports = {
+  
+}

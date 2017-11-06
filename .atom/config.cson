@@ -1,0 +1,58 @@
+"*":
+  Zen:
+    width: 100
+  "activate-power-mode":
+    autoToggle: false
+  "advanced-open-file":
+    createDirectories: true
+    createFileInstantly: true
+  "atom-beautify":
+    general:
+      _analyticsUserId: "52c52acb-c5e1-4782-8457-f8fc2cd1a2cb"
+    js:
+      brace_style: "collapse-preserve-inline"
+      indent_size: 2
+  autosave:
+    enabled: true
+  core:
+    disabledPackages: [
+      "block-comment-plus"
+      "atom-ternjs"
+      "Zen"
+      "file-templates"
+      "tabs-to-spaces"
+      "vim-mode-plus"
+      "terminal-plus"
+    ]
+    ignoredNames: [
+      ".git"
+      ".hg"
+      ".DS_Store"
+      "Thumbs.db"
+    ]
+    telemetryConsent: "no"
+    themes: [
+      "atom-dark-ui"
+      "atom-material-syntax"
+    ]
+  editor:
+    fontSize: 12
+    tabType: "soft"
+  "exception-reporting":
+    userId: "0b633013-dd4c-ebe1-1d8f-0e57fb842ea9"
+  "file-templates": {}
+  linter: {}
+  "linter-eslint":
+    fixOnSave: true
+  "linter-ui-default":
+    panelHeight: 124
+  minimap: {}
+  "sync-settings":
+    _lastBackupHash: "437d797f8b241e805a8883131b17dc040f43e694"
+    gistId: "2161fe35aed95f9bd99b977be6088dac"
+    personalAccessToken: "f06261e8ce9c251d86f61e43069459aec873fe5d"
+  "terminal-plus":
+    core: {}
+  "tree-view": {}
+  welcome:
+    showOnStartup: false
